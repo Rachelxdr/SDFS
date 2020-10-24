@@ -369,29 +369,29 @@ void Node::processHeartbeat(string message) {
 								cout << "[UPDATE]" << message.c_str() << endl;
 #endif
 								this->logWriter->printTheLog(UPDATE, message);
-							}
-						}
-						break;
 					}
-					// default: { // ALL2ALL doesn't disseminate
-						int currentHeartbeatCounter = get<0>(this->membershipList[mapKey]);
-						if(incomingHeartbeatCounter > currentHeartbeatCounter){
-							get<0>(this->membershipList[mapKey]) = incomingHeartbeatCounter;
-							get<1>(this->membershipList[mapKey]) = localTimestamp;
-							get<2>(this->membershipList[mapKey]) = failFlag;
-							string message = "["+to_string(this->localTimestamp)+"] node "+get<0>(mapKey)+"/"+get<1>(mapKey)+"/"+get<2>(mapKey)+" from "+to_string(currentHeartbeatCounter)+" to "+to_string(incomingHeartbeatCounter);
-#ifdef LOG_VERBOSE
-							cout << "[UPDATE]" << message.c_str() << endl;
-#endif
-							this->logWriter->printTheLog(UPDATE, message);
-						}
-						break;
-					// }
 				}
+				break;
+			}
+// 					default: { // ALL2ALL doesn't disseminate
+// 						int currentHeartbeatCounter = get<0>(this->membershipList[mapKey]);
+// 						if(incomingHeartbeatCounter > currentHeartbeatCounter){
+// 							get<0>(this->membershipList[mapKey]) = incomingHeartbeatCounter;
+// 							get<1>(this->membershipList[mapKey]) = localTimestamp;
+// 							get<2>(this->membershipList[mapKey]) = failFlag;
+// 							string message = "["+to_string(this->localTimestamp)+"] node "+get<0>(mapKey)+"/"+get<1>(mapKey)+"/"+get<2>(mapKey)+" from "+to_string(currentHeartbeatCounter)+" to "+to_string(incomingHeartbeatCounter);
+// #ifdef LOG_VERBOSE
+// 							cout << "[UPDATE]" << message.c_str() << endl;
+// #endif
+// 							this->logWriter->printTheLog(UPDATE, message);
+// 						}
+// 						break;
+// 					}
+		}
 			// } else {
 			// 	// TODO: we might need to bring failed node back once we have new heartbeat
 			// }	
-		}		
+	}		
 
 	// If membership list changed in all-to-all, full membership list will be sent
 	if(changed && this->runningMode == ALL2ALL){
