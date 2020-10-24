@@ -373,7 +373,7 @@ void Node::processHeartbeat(string message) {
 						}
 						break;
 					}
-					default: { // ALL2ALL doesn't disseminate
+					// default: { // ALL2ALL doesn't disseminate
 						int currentHeartbeatCounter = get<0>(this->membershipList[mapKey]);
 						if(incomingHeartbeatCounter > currentHeartbeatCounter){
 							get<0>(this->membershipList[mapKey]) = incomingHeartbeatCounter;
@@ -386,11 +386,11 @@ void Node::processHeartbeat(string message) {
 							this->logWriter->printTheLog(UPDATE, message);
 						}
 						break;
-					}
+					// }
 				}
-			} else {
-				// TODO: we might need to bring failed node back once we have new heartbeat
-			}	
+			// } else {
+			// 	// TODO: we might need to bring failed node back once we have new heartbeat
+			// }	
 		}		
 
 	// If membership list changed in all-to-all, full membership list will be sent
