@@ -1,10 +1,13 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 
-#include <iostream> 
+#include <iostream>
 #include <string>
 
-using namespace std;
+#include "Utils.h"
+
+using std::string;
+using std::to_string;
 
 class Member {
 public:

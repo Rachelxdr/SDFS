@@ -3,20 +3,18 @@
 Logger::Logger()
 {
 	filename = LOGFILE;
-	//loggingFile.open(filename);
 }
 
 Logger::Logger(string fileName)
 {
 	filename = fileName;
-	//loggingFile.open(filename);
 }
 
 int Logger::writeToFile(string messages)
 {
 	FILE *fp;
 	fp = fopen(filename.c_str(), "a");
-	fprintf(fp, messages.c_str());
+	fprintf(fp, "%s", messages.c_str());
 	fclose(fp);
 	return 0;
 }
@@ -72,12 +70,5 @@ int Logger::printTheLog(LogType type, string s)
 		default:
 			break;
 	}
-	//loggingFile << s;
 	return 0;
 }
-
-/*int Logger::closeFile()
-{
-	loggingFile.close();
-	return 0;
-}*/
