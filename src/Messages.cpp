@@ -21,7 +21,7 @@ Messages::Messages(string payloadMessage)
 	}
 	payload = payloadMessage;
 }
-
+Messages::Messages() { }
 Messages::Messages(MessageType messageType, string payloadMessage)
 {
 	type = messageType;
@@ -32,4 +32,9 @@ string Messages::toString()
 {
 	string message = to_string(type) + "::" + payload;
 	return message;
+}
+
+int Messages::fillerLength(){
+	string message = to_string(type) + "::";
+	return message.size();
 }

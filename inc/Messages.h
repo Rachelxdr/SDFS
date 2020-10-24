@@ -15,7 +15,9 @@ public:
 	string payload;
 	Messages(string payloadMessage); //split message into type and payload, delimeted by ::
 	Messages(MessageType messageType, string payloadMessage);
+	Messages();
 	string toString();
+	int fillerLength();
 };
 
 #endif //MESSAGES_H

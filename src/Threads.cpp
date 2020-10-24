@@ -1,9 +1,10 @@
 #include "../inc/Node.h"
-
+#include "../inc/TcpSocket.h"
 
 void *runUdpServer(void *udpSocket)
 {
-	UdpSocket* udp = (UdpSocket*) udpSocket;
+	UdpSocket* udp;
+	udp = (UdpSocket*) udpSocket;
 	udp->bindServer();
 	pthread_exit(NULL);
 }
@@ -28,7 +29,8 @@ void testMessages(UdpSocket* udp)
  **/
 void *runSenderThread(void *node)
 {
-	Node *nodeOwn = (Node *) node;
+	Node *nodeOwn;
+	nodeOwn = (Node *) node;
 	nodeOwn->activeRunning = true;
 
 	// step: joining to the group -> just heartbeating to introducer
