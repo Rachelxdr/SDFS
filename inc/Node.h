@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <iostream> 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -14,13 +14,13 @@
 #include "Member.h"
 #include "UdpSocket.h"
 #include "Logger.h"
+#include "Utils.h"
 
 using namespace std;
 
-#define INTRODUCER "172.22.158.5"
-#define PORT "6000"
+#define INTRODUCER "fa20-cs425-g02-01.cs.illinois.edu"
+#define UDP_PORT "4950"
 
-//#define LOG_VERBOSE 1
 
 #define LOGGING_FILE_NAME "logs.txt"
 
@@ -45,8 +45,6 @@ public:
 	int localTimestamp;
 	int heartbeatCounter;
 	time_t startTimestamp;
-	// unsigned long byteSent;
-	// unsigned long byteReceived;
 	ModeType runningMode;
 	Logger* logWriter;
 	bool activeRunning;
@@ -59,17 +57,16 @@ public:
 	int listenForHeartbeats();
 	int failureDetection();
 	void updateNodeHeartbeatAndTime();
-	void computeAndPrintBW(double diff);
+	void computeAndPrintBandwidth(double diff);
 	int requestSwitchingMode();
 	int SwitchMyMode();
 	void debugMembershipList();
-	
+
 private:
 	string populateMembershipMessage();
 	string populateIntroducerMembershipMessage();
 	void readMessage(string message);
 	void processHeartbeat(string message);
-	vector<string> splitString(string s, string delimiter);
 	vector<tuple<string,string, string>> getRandomNodesToGossipTo();
 };
 

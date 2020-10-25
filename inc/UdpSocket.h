@@ -1,6 +1,6 @@
 #ifndef UDPSOCKET_H
 #define UDPSOCKET_H
-#include <iostream> 
+#include <iostream>
 #include <string>
 
 #include <stdio.h>
@@ -15,20 +15,22 @@
 #include <netdb.h>
 #include <queue>
 
-using namespace std;
+using std::string;
+using std::queue;
 
 #define MAXBUFLEN 1024
 #define LOSS_RATE 0
 
 class UdpSocket {
 public:
+	string serverPort;
 	unsigned long byteSent;
 	unsigned long byteReceived;
 	queue<string> qMessages;
-	
-	void bindServer(string port);
+
+	void bindServer();
 	void sendMessage(string ip, string port, string message);
-	UdpSocket();
+	UdpSocket(string port);
 
 };
 #endif //UDPSOCKET_H
